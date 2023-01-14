@@ -34,15 +34,14 @@ pre {
    font-size: 0.8rem;
 }
 </style>
-:heavy_check_mark:
+✅
 
 ```C
 for (Node* node = list->head; node != NULL; node = node->next)
     Print(node->data);
 ```
-:x:
 
-```C
+```C++
 Node* node = list->head;
 if (node == NULL) return;
 while (node->next != NULL) {
@@ -54,18 +53,16 @@ if (node != NULL) Print(node->data);
 ---
 Is Smaller always better
 
-:heavy_check_mark:
-
-```C
+```C++
+✅
 if (exponent >= 0) {
     return mantissa * (1 << exponent);
 } else {
     return mantissa / (1 << -exponent);
 }
 ```
-:x:
-
-```C
+```C++
+❌
 return exponent >= 0 ? mantissa * (1 << exponent) : mantissa / (1 << -exponent);
 ```
 ---
@@ -85,18 +82,17 @@ img[alt~="center"] {
 ---
 
 Choose Specific Words
-:x:
-
 ```C++
+❌
 class BinaryTree {
     int Size();
     ...
 };
 ```
 
-:heavy_check_mark:
 
 ```C++
+✅
 class BinaryTree {
     int Height();     // NumNodes or MemoryBytes 
 ...
@@ -106,20 +102,18 @@ class BinaryTree {
 ---
 Choose Specific Words
 
-:x:
-
 ```C++
+❌
 class Thread {
     int Stop();
 ...
 };
 ```
 
-:heavy_check_mark:
-
-```C
+```C++
+✅
 class Thread {
-    int Kill();     // Pause
+    int Kill();     // Or Pause
 ...
 };
 ```
@@ -152,15 +146,16 @@ It’s better to be clear and precise than to be cute.
 ---
 Avoid Generic Names Like tmp and retval
 ```C
+❌
 var euclidean_norm = function (v) {
     var retval = 0.0;
     for (var i = 0; i < v.length; i += 1)
-    retval += v[i] * v[i];
+        retval += v[i] * v[i];
     return Math.sqrt(retval);
 };
 ```
 For instance, imagine if the inside of the loop were accidentally:
-```retval += v[i];```
+```❌retval += v[i];```
 This bug would be more obvious if the name were sum_squares:
 ```C++
 sum_squares += v[i]; // Where's the "square" that we're summing? Bug!
@@ -169,6 +164,7 @@ sum_squares += v[i]; // Where's the "square" that we're summing? Bug!
 Loop Iterators
 
 ```C++
+❌
 for (int i = 0; i < clubs.size(); i++)
     for (int j = 0; j < clubs[i].members.size(); j++)
         for (int k = 0; k < users.size(); k++)
@@ -178,6 +174,7 @@ for (int i = 0; i < clubs.size(); i++)
 In the if statement, members[] and users[] are using the wrong index
 
 ```C++
+✅
 if (clubs[ci].members[ui] == users[mi]) # Bug! First letters don't match up.
 ```
 
@@ -192,8 +189,8 @@ img[alt~="center"] {
 ![h:500 center](img/hammer.png?raw=true "Concrete Names")
 
 ---
-:x: ServerCanStart()
-:heavy_check_mark: CanListenOnPort()
+❌ ServerCanStart()
+✅ CanListenOnPort()
 
 At Google, to avoid default Copy Constructors and  assignment operators, the following macro is defined
 
@@ -215,12 +212,13 @@ img[alt~="center"] {
 ![h:500 center](img/dangerous_animal.png?raw=true "Dangerous Animal")
 
 ---
-:x: 
+
 ```C++ 
+❌
 string id; // Example: "af84ef845cd8"```
 ```
-:heavy_check_mark:
 ```C++
+✅
 string hex_id;
 ```
 
@@ -261,8 +259,8 @@ img[alt~="center"] {
 ![h:500 center](img/long_names.png?raw=true "Long Names")
 
 ---
-:x: DoServerLoop(), ConvertToString()
-:heavy_check_mark: ServerLoop(), ToString()
+❌ DoServerLoop(), ConvertToString()
+✅ ServerLoop(), ToString()
 
 Use Acronyms and declare them in your Coding Standard/README etc
 
@@ -284,6 +282,7 @@ Actively scrutinize your names by asking yourself, “What other meanings could 
 
 e.g 
 ```C++
+❌
 # Cuts off the end of the text, and appends "..."
 def Clip(text, length):
 ...
@@ -294,6 +293,7 @@ Behavior?
 
 ---
 ```C++
+✅
 # Cuts off the end of the text, and appends "..."
 def Truncate(text, length):
 ...
@@ -301,13 +301,13 @@ def Truncate(text, length):
 Rename length to max_length or better yet, max_chars.
 
 ---
-:x:
 ```C++
+❌
 print integer_range(start=2, stop=4)
 # Does this print [2,3] or [2,3,4] (or something else)?
 ```
-:heavy_check_mark:
 ```C++
+✅
 print integer_range(first=2, last=4)
 # Does this print [2,3] or [2,3,4] (or something else)?
 ```
@@ -320,12 +320,12 @@ Unfortunately, English doesn’t have a succinct word for “just past the last 
 
 ---
 Booleans
-:x: ```read_password```
-:heavy_check_mark: ```user_is_authenticated```
+❌ ```read_password```
+✅```user_is_authenticated```
 
 
-:x: ```disable_ssl = false```
-:heavy_check_mark: ```use_ssl = true```
+❌ ```disable_ssl = false```
+✅```use_ssl = true```
 
 ---
 **WHO’S THE WIZARD?**
@@ -360,8 +360,8 @@ img[alt~="center"] {
 ![h:500 center](img/interview_candidate.png?raw=true "Candidates :(")
 
 ---
-:x:
 ```C++
+❌
 class StatsKeeper {
 public:
 // A class for keeping track of a series of doubles
@@ -378,8 +378,8 @@ past_items
 
 
 ---
-:heavy_check_mark:
 ```C++
+✅
 // A class for keeping track of a series of doubles
 // and methods for quick statistics about them.
 class StatsKeeper {
@@ -397,8 +397,8 @@ class StatsKeeper {
 ```
 
 ---
-:x:
 ```C++
+❌
 public class PerformanceTester {
 public static final TcpConnectionSimulator wifi = new TcpConnectionSimulator(
     500, /* Kbps */
@@ -420,8 +420,8 @@ public static final TcpConnectionSimulator cell = new TcpConnectionSimulator(
 ```
 
 ---
-:heavy_check_mark:
 ```C++
+✅
 public class PerformanceTester {
     public static final TcpConnectionSimulator wifi =
         new TcpConnectionSimulator(
@@ -445,8 +445,8 @@ public class PerformanceTester {
 ```
 
 ---
-:heavy_check_mark:
 ```C++
+✅
 public class PerformanceTester {
 // TcpConnectionSimulator(throughput, latency, jitter, packet_loss)
 //                             [Kbps]   [ms]    [ms]    [percent]
@@ -504,8 +504,8 @@ img[alt~="center"] {
 ![h:500 center](img/liberty.png?raw=true "What not to Comment :(")
 
 ---
-:x:
 ```C++
+❌
 // The class definition for Account
 class Account {
     public:
@@ -529,13 +529,13 @@ img[alt~="center"] {
 ![h:500 center](img/pelted.png?raw=true "What not to Comment :(")
 
 ---
-:x:
 ```C++
+❌
 // Find the Node in the given subtree, with the given name, using the given depth.
 Node* FindNodeInSubtree(Node* subtree, string name, int depth);
 ```
-:heavy_check_mark:
 ```C++
+✅
 // Find a Node with the given 'name' or return NULL.
 // If depth <= 0, only 'subtree' is inspected.
 // If depth == N, only 'subtree' and N levels below are inspected.
@@ -544,27 +544,27 @@ Node* FindNodeInSubtree(Node* subtree, string name, int depth);
 
 ---
 Don’t Comment Bad Names—Fix the Names Instead
-:x:
 ```C++
+❌
 // Enforce limits on the Reply as stated in the Request,
 // such as the number of items returned, or total byte size, etc.
 void CleanReply(Request request, Reply reply);
 ```
-:heavy_check_mark:
 ```C++
+✅
 // Make sure 'reply' meets the count/byte/etc. limits from the 'request'
 void EnforceLimitsFromRequest(Request request, Reply reply);
 ```
 
 ---
 Don’t Comment Bad Names—Fix the Names Instead
-:x:
 ```C++
+❌
 // Releases the handle for this key. This doesn't modify the actual registry.
 void DeleteRegistry(RegistryKey* key);
 ```
-:heavy_check_mark:
 ```C++
+✅
 void ReleaseRegistryHandle(RegistryKey* key);
 ```
 ---
@@ -605,38 +605,257 @@ img[alt~="center"] {
 ![h:500 center](img/pitfalls.png?raw=true "Advertising Likely Pitfalls")
 
 ---
-:x:
 ```C++
-❌void SendEmail(string to, string subject, string body);
-```
-:heavy_check_mark:
-```C++
-✅// Calls an external service to deliver email. (Times out after 1 minute.)
+❌ 
 void SendEmail(string to, string subject, string body);
 ```
-:x:
 ```C++
+✅
+// Calls an external service to deliver email. (Times out after 1 minute.)
+void SendEmail(string to, string subject, string body);
+```
+```C++
+❌ 
 def FixBrokenHtml(html): ...
 ```
-:heavy_check_mark:
-```
-✓// Runtime is O(number_tags * average_tag_depth), so watch out for badly nested inputs.
+
+```C++
+✅
+// Runtime is O(number_tags * average_tag_depth), so watch out for badly nested inputs.
 def FixBrokenHtml(html): ...
 ```
+---
+# "BIG PICTURE" Comments
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/big_picture.png?raw=true "Big Picture Comments")
+
+---
+# SHOULD YOU COMMENT THE WHAT, THE WHY, OR THE HOW?
+You may have heard advice like, “Comment the why, not the what (or the how).” Although catchy, we feel these statements are too simplistic and mean different things to different people.
+
+Do whatever helps the reader understand the code more easily. This may involve commenting the what, the how, or the why (or all three).
+
+---
+Getting over the Writer's Block
+
+```C++
+// Oh crap, this stuff will get tricky if there are ever duplicates in this list.
+```
+to 
+```C++
+// Careful: this code doesn't handle duplicates in the list (because that's hard to do)
+```
+
+---
+# Precise & Compact Comments
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/concise_commenting.png?raw=true "Concise Comments")
+
+---
+**KEY IDEA**
+Comments should have a high information-to-space ratio.
+
+```C++
+// Call connect with 10 as timeout and encryption set to false
+Connect(10, false);
+
+Connect(/* timeout_ms = */ 10, /* use_encryption = */ false);
+```
+
+```C++
+// Iterate through the list in reverse order
+for (list<Product>::reverse_iterator it = products.rbegin(); it != products.rend();++it)
+
+// Display each price, from highest to lowest
+for (list<Product>::reverse_iterator it = products.rbegin(); ... )
+```
+
+---
+# Making Control Flow Easy to Read
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/control_flow.png?raw=true "Control Flow")
+
+---
+The order of arguments in conditionals
+
+LHS: expression being interrogated, more in flux
+RHS: expression being compared against, more constant
+```C++
+while (bytes_received < bytes_expected)
+```
+---
+# Order of if/else 
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/gorilla.png?raw=true "Address the Gorilla in the room")
+
+---
+• Prefer dealing with the positive case first instead of the negative—e.g., if (debug) instead
+of if (!debug).
+• Prefer dealing with the simpler case first to get it out of the way. This approach might also
+allow both the if and the else to be visible on the screen at the same time, which is nice.
+• Prefer dealing with the more interesting or conspicuous case first.
 
 ---
 
+“Don’t think of a pink elephant.” You can’t help but think about it—the “don’t” is drowned out by the more unusual “pink elephant.”
+
+```C++
+if (url.HasQueryParameter("expand_all")) {
+    for (int i = 0; i < items.size(); i++) {
+        items[i].Expand();
+}
+...
+} else {
+response.Render(items);
+...
+}
+```
+---
+# Avoid do/while Loops
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/do_while.png?raw=true "Avoid Do While :(")
 
 ---
+In my experience, the do-statement is a source of errors and confusion. … I prefer the condition “up front where I can see it.” Consequently, I tend to avoid do-statements.
+
+Bjarne Stroustrup
+
+---
+Return Early from a function
+
+```C++
+public boolean Contains(String str, String substr) {
+    if (str == null || substr == null) 
+        return false;
+    if (substr.equals("")) 
+        return true;
+}
+```
+---
+# Can you follow the flow of Execution?
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/three_card.png?raw=true "Variable manipulated many times")
+
+---
+**KEY IDEA**
+The more places a variable is manipulated, the harder it is to reason about its current value.
+
+* Shrink the Scope of your variables
+* Very hard to understand programs with many variables
 
 
 ---
-
-
----
-
+Microsoft’s Eric Brechner has talked about how a great interview question should involve at least three variables.* It’s probably because dealing with three variables at the same time forces you to think hard! This makes sense for an interview, where you’re trying to push a candidate to the limit. But do you want your coworkers to feel like they’re in an interview while they’re reading your code?
 
 ---
+# One Task at a Time
 
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/1task.png?raw=true "Multi-Tasking :(")
 
 ---
+# Refactoring your code
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/tasking.png?raw=true "Refactoring your code")
+
+---
+# Turning thoughts into Code
+You do not really understand something unless you can explain it to your grandmother.
+    — **Albert Einstein**
+
+1. Describe what code needs to do, in plain English, as you would to a colleague.
+2. Pay attention to the key words and phrases used in this description.
+3. Write your code to match this description.
+
+---
+# Write Less Code
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/less_code.png?raw=true "Write Less Code")
+
+---
+**KEY IDEA**
+The most readable code is no code at all.
+
+* Use libraries
+* Unix/OS tools instead of coding
+* Remove unused code
+
+---
+# Error Message Readability
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/readable_error.png?raw=true "Errors and Readability")
+
+---
+# Testing and Readability
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/cat_temp.png?raw=true "Testing and Readability")
+
+---
+# Testing and Redability
+* Prefer clean and simple test values that still get the job done.
+* But the complete code should still be exercised.
+* Name the test to clarify:
+    • The class being tested (if any)
+    • The function being tested
+    • The situation or bug being tested
