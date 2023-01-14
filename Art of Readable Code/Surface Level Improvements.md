@@ -480,17 +480,149 @@ img[alt~="center"] {
 
 # Commenting
 
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/manuals.png?raw=true "Manuals :(")
+
 ---
-
-
----
-
+**KEY IDEA**
+The purpose of commenting is to help the reader know as much as the writer did.
 
 ---
+# What not to Comment
 
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/liberty.png?raw=true "What not to Comment :(")
 
 ---
+:x:
+```C++
+// The class definition for Account
+class Account {
+    public:
+        // Constructor
+        Account();
+        // Set the profit member to a new value
+        void SetProfit(double profit);
+        // Return the profit from this Account
+        double GetProfit();
+};
+```
 
+---
+Don't Comment for the sake of commenting
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/pelted.png?raw=true "What not to Comment :(")
+
+---
+:x:
+```C++
+// Find the Node in the given subtree, with the given name, using the given depth.
+Node* FindNodeInSubtree(Node* subtree, string name, int depth);
+```
+:heavy_check_mark:
+```C++
+// Find a Node with the given 'name' or return NULL.
+// If depth <= 0, only 'subtree' is inspected.
+// If depth == N, only 'subtree' and N levels below are inspected.
+Node* FindNodeInSubtree(Node* subtree, string name, int depth);
+```
+
+---
+Don’t Comment Bad Names—Fix the Names Instead
+:x:
+```C++
+// Enforce limits on the Reply as stated in the Request,
+// such as the number of items returned, or total byte size, etc.
+void CleanReply(Request request, Reply reply);
+```
+:heavy_check_mark:
+```C++
+// Make sure 'reply' meets the count/byte/etc. limits from the 'request'
+void EnforceLimitsFromRequest(Request request, Reply reply);
+```
+
+---
+Don’t Comment Bad Names—Fix the Names Instead
+:x:
+```C++
+// Releases the handle for this key. This doesn't modify the actual registry.
+void DeleteRegistry(RegistryKey* key);
+```
+:heavy_check_mark:
+```C++
+void ReleaseRegistryHandle(RegistryKey* key);
+```
+---
+# Include "Director Commentary"
+```C++
+// Surprisingly, a binary tree was 40% faster than a hash table for this data.
+// The cost of computing a hash was more than the left/right comparisons.
+
+....
+
+// This heuristic might miss a few words. That's OK; solving this 100% is hard.
+
+....
+
+// This class is getting messy. Maybe we should create a 'ResourceNode' subclass to
+// help organize things.
+```
+---
+# Comment on Flaws in Your Code
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/flaws_in_code.png?raw=true "Comment on Flaws :)")
+
+---
+# Advertising Likely Pitfalls
+
+<style>
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+![h:500 center](img/pitfalls.png?raw=true "Advertising Likely Pitfalls")
+
+---
+:x:
+```C++
+❌void SendEmail(string to, string subject, string body);
+```
+:heavy_check_mark:
+```C++
+✅// Calls an external service to deliver email. (Times out after 1 minute.)
+void SendEmail(string to, string subject, string body);
+```
+:x:
+```C++
+def FixBrokenHtml(html): ...
+```
+:heavy_check_mark:
+```
+✓// Runtime is O(number_tags * average_tag_depth), so watch out for badly nested inputs.
+def FixBrokenHtml(html): ...
+```
 
 ---
 
